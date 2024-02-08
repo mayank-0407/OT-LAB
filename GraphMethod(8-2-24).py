@@ -48,3 +48,22 @@ pt=sol'
 % phase 5 all points
 allpt=[corPts;pt]
 points=unique(allpt,'rows')
+
+% phase 6 feasible region
+for i=1:size(a,1)
+const1(i) = a(1,1)*points(i,1)+a(1,2)*points(i,2) -b(1)
+const2(i) = a(2,1)*points(i,1)+a(2,2)*points(i,2)-b(2)
+const3(i) = a(3,1)*points(i,1)+a(3,3)*points(i,2)-b(3)
+end
+
+s1=find(const1>0);
+s2=find(const2>0);
+s3=find(const3>0);
+s=unique([s1,s2,s3]);
+points(s,:)=[]
+
+% phase7
+z=points*c';
+[obj,idxx]=max(z)
+x1=points(idxx,1)
+x2=points(idxx,2)

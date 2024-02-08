@@ -3,7 +3,7 @@ clear all
 % phase 1 
 a=[1 2;1 1;1 -2]; 
 b=[10;6;1]; 
-a=[1 2;1 1;1 -2]; 
+c=[2 1];
 %phase 2 
 x1=0:max(b); 
 x21=(b(1)-a(1,1)*x1)/a(1,2); 
@@ -53,7 +53,7 @@ points=unique(allpt,'rows')
 for i=1:size(a,1)
 const1(i) = a(1,1)*points(i,1)+a(1,2)*points(i,2) -b(1)
 const2(i) = a(2,1)*points(i,1)+a(2,2)*points(i,2)-b(2)
-const3(i) = a(3,1)*points(i,1)+a(3,3)*points(i,2)-b(3)
+const3(i) = a(3,1)*points(i,1)+a(3,2)*points(i,2)-b(3)
 end
 
 s1=find(const1>0);

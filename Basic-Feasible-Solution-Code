@@ -1,0 +1,17 @@
+A=[2 3 -1 4;1 -2 6 -7];
+b=[8;-3];
+c=[2 3 4 7];
+m=size(A,1); % no of equations 1 means rows
+n=size(A,2); % no of variables 2 means cols
+
+nCm=nchoosek(n,m);
+
+p=nchoosek(1:n,m);
+count=0
+for i=1:nCm
+y=zeros(n,1); %array of 0 in row only wihtout 1 it will create a matrix of n,n
+A1=A(:,p(i,:));
+X=inv(A1)*b
+count=count+1;
+end
+count

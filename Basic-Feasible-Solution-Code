@@ -3,15 +3,27 @@ b=[8;-3];
 c=[2 3 4 7];
 m=size(A,1); % no of equations 1 means rows
 n=size(A,2); % no of variables 2 means cols
+if n>m
+    nCm=nchoosek(n,m);
 
-nCm=nchoosek(n,m);
+    p=nchoosek(1:n,m);
+    count=0;
+    sol=[]
+    for i=1:nCm
+        y=zeros(n,1); %array of 0 in col only wihtout 1 it will create a matrix of n,n
+        A1=A(:,p(i,:));
+        X=inv(A1)*b;
+        if all(X>=0 & X~=inf & X~=-inf) % all is used to check these conditions in every element of the vector used
+            count=count+1;
+            y(p(i,:))=X;
+            sol=[sol y];
+        end
+    end
+    sol
+    count;
 
-p=nchoosek(1:n,m);
-count=0
-for i=1:nCm
-y=zeros(n,1); %array of 0 in row only wihtout 1 it will create a matrix of n,n
-A1=A(:,p(i,:));
-X=inv(A1)*b
-count=count+1;
-end
-count
+    z=c*sol;
+    [bfs,idx]=max(z)
+else
+    error('N is Less than M')
+end 

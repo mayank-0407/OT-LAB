@@ -1,10 +1,10 @@
 clc 
 clear all 
-% phase 1 
+% phase 1 Input parameter
 a=[1 2;1 1;1 -2]; 
 b=[10;6;1]; 
 c=[2 1];
-%phase 2 
+%phase 2 Plot these lines
 x1=0:max(b); 
 x21=(b(1)-a(1,1)*x1)/a(1,2); 
 x22=(b(2)-a(2,1)*x1)/a(2,2); 

@@ -4,6 +4,7 @@ clear all
 a=[1 2;1 1;1 -2]; 
 b=[10;6;1]; 
 c=[2 1];
+
 %phase 2 Plot these lines
 x1=0:max(b); 
 x21=(b(1)-a(1,1)*x1)/a(1,2); 
@@ -18,7 +19,8 @@ title('Question 1')
 xlabel('x1'); 
 ylabel('x2'); 
 legend('x1+x2=10','x1+x2=6','x1-2x2=1') 
-%phase 3 
+
+%phase 3  Extracting Intersection Points
 % line 1 points 
 c1=find(x1==0); 
 c2=find(x21==0); 
@@ -31,9 +33,11 @@ line2=[x1([c3 c4]);x22([c3 c4])]'
 c5=find(x1==0); 
 c6=find(x23==0); 
 line3=[x1([c5 c6]);x23([c5 c6])]' 
-%take transpose to combine these vectors and ' is for transpose
+% takes transpose to combine these vectors and ' is for transpose
 newLine=[line1;line2;line3]; 
 corPts=unique(newLine,'rows') 
+
+%Phase 4: Solving Systems of Equations
 %ad loop i=1 and j=i+1
 sol=[0;0]
 for i=1:size(a,1)  % this size is the size of row
@@ -45,7 +49,7 @@ for i=1:size(a,1)  % this size is the size of row
     end
 end
 pt=sol'
-% phase 5 all points
+% Phase 5: Combining All Points
 allpt=[corPts;pt]
 points=unique(allpt,'rows')
 
@@ -62,7 +66,7 @@ s3=find(const3>0);
 s=unique([s1,s2,s3]);
 points(s,:)=[]
 
-% phase7
+% Phase 7: Finding the Optimal Point
 z=points*c';
 [obj,idxx]=max(z)
 x1=points(idxx,1)
